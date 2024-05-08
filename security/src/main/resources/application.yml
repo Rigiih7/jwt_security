@@ -2,13 +2,13 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/jwt_security
-    username: rigiih
-    password: rigiih
+    url: jdbc:mysql://192.168.0.85:3306/smartteller_multitenancy
+    username: root
+    password: mysql
     #driver-class-name: org.mysql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -18,7 +18,7 @@ spring:
 
 server:
    servlet:
-     context-path: /smart-teller
+     context-path: /smartteller_multitenancy
 
    #application:
      #security:
@@ -27,3 +27,11 @@ server:
        #  expiration: 86400000 # a day
       #   refresh-token:
       #    expiration: 604800000 # 7 days
+jwt:
+  tokenExpiration: 120000000
+  secretKey: K8dfUKdsfhadshj9001X;
+  endpoints-using-temp-token: /validateOtp, /changePassword, /resetPassword
+otp:
+  requireOtp: false
+  otpExpiryPeriod: 120
+  otpMaxRetries: 3
